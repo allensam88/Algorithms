@@ -16,7 +16,7 @@
 # *****PSEUDO CODE*****
 # set initial max value to be 2nd index (arr[1]) minus the previous index (arr[0])
 # loop thru each price (i) in prices array
-# loop thru prior prices (j) and find price difference
+# then loop thru current prices (j) and find price difference between prior price (i)
 # if price difference is greater than max profit
 # then re-assign it to max profit
 
@@ -25,8 +25,8 @@
 #   i
 # [1050, 270, 1540, 3800, 2]
 #         j
-# 1st iteration: all possible profit values when i = 1 and  j = i + 1 ~~> 490, 1270 | max profit re-assign to 1270
-# 2nd iteration: all possible profit values when i = 2 and  j = i + 1 ~~> 2750, 3530, 2260 | max profit re-assign to 3530
+# 1st iteration: all possible profit values when i = 1 and  j = i + 1 ~~> 490, 1270 | re-assign max profit to 1270
+# 2nd iteration: all possible profit values when i = 2 and  j = i + 1 ~~> 2750, 3530, 2260 | re-assign max profitn to 3530
 # 3rd iteration: all possible profit values when i = 3 and  j = i + 1 ~~> -1048, -268, -1538, -3798 | max profit still at 3530
 
 import argparse
