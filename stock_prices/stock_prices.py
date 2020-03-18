@@ -14,46 +14,20 @@
 # Step 2: PLAN
 
 # *****PSEUDO CODE*****
-# 1st iteration
-# i starts at 2nd index (arr[1]) and subtracts the previous index (arr[0])
-# 	    i
-# [1050, 270, 1540, 3800, 2]
-# loop thru and find minimum price in prior indices
-# set current min price = 1050
-# loop thru trimmed array and find differences, then set max profit
-# arr[i] = current min price = 270 - 1050 = -780 # negative indicates a loss, no profit
-# check result against max profit, if higher, assign to max profit # in this case initial max profit is zero, so assign anyway
-# max profit = -780
+# set initial max value to be 2nd index (arr[1]) minus the previous index (arr[0])
+# loop thru each price (i) in prices array
+# loop thru prior prices (j) and find price difference
+# if price difference is greater than max profit
+# then re-assign it to max profit
 
-# 2nd iteration
-# 	    	 i
+# ---Example iterations---
+# calculate initial max profit = 270 - 1050 = -780
+#   i
 # [1050, 270, 1540, 3800, 2]
-# loop thru and find minimum price in prior indices
-# set current min price = 270
-# loop thru trimmed array and find differences, then set max profit
-# arr[i] - current min price = 1540 - 270 = 1270
-# check result against max profit, if higher, assign to max profit
-# max profit = 1270
-
-# 3rd iteration
-# 	    	 	    i
-# [1050, 270, 1540, 3800, 2]
-# loop thru and find minimum price in prior indices
-# set current min price = 270
-# loop thru trimmed array and find differences, then set max profit
-# arr[i] - current min price = 3800 - 270 = 3530
-# check result against max profit, if higher, assign to max profit
-# max profit = 3530
-
-# 4th iteration
-# 	    	 	    	i
-# [1050, 270, 1540, 3800, 2]
-# loop thru and find minimum price in prior indices
-# set current min price = 270
-# loop thru trimmed array and find differences, then set max profit
-# arr[i] - current min price = 2 - 270 = -268
-# check result against max profit, if higher, assign to max profit
-# max profit = 3530
+#         j
+# 1st iteration: all possible profit values when i = 1 and  j = i + 1 ~~> 490, 1270 | max profit re-assign to 1270
+# 2nd iteration: all possible profit values when i = 2 and  j = i + 1 ~~> 2750, 3530, 2260 | max profit re-assign to 3530
+# 3rd iteration: all possible profit values when i = 3 and  j = i + 1 ~~> -1048, -268, -1538, -3798 | max profit still at 3530
 
 import argparse
 
@@ -62,13 +36,13 @@ def find_max_profit(prices):
     # figure out the first opening max price
     max_profit = prices[1] - prices[0]
     # loop through each price
-    for prior_price in range(0, len(prices)):
+    for i in range(1, len(prices)):
         # loop through current prices to compare price differences
-        for current_price in range(prior_price + 1, len(prices)):
+        for j in range(i + 1, len(prices)):
             # find difference in current price from prior price, compare to current max profit
-            if(prices[current_price] - prices[prior_price] > max_profit):
+            if(prices[j] - prices[i] > max_profit):
                 # if result is bigger, re-assign max profit
-                max_profit = prices[current_price] - prices[prior_price]
+                max_profit = prices[j] - prices[i]
 
     return max_profit
 
