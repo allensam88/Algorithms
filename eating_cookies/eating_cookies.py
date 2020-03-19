@@ -38,16 +38,22 @@ import sys
 # recursive solution
 
 
-def eating_cookies(n, cache=None):
+def eating_cookies(n, cache={0: 1, 1: 1, 2: 2}):
     # if 1 or 0 zero cookies left, stop eating
-    if n <= 1:
-        return 1
+    # if n <= 1:
+    #     return 1
     # if only 2 cookies left, stop eating
-    if n <= 2:
-        return 2
+    # if n <= 2:
+    #     return 2
     # if more than 2 cookies left, keep on eating
     # eat either 3, 2, or 1 cookies
-    return eating_cookies(n-3) + eating_cookies(n - 2) + eating_cookies(n - 1)
+
+    if n in cache:
+        return cache[n]
+
+    cache[n] = eating_cookies(n-1) + eating_cookies(n-2) + eating_cookies(n-3)
+
+    return cache[n]
 
 
 if __name__ == "__main__":
