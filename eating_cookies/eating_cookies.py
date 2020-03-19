@@ -39,10 +39,14 @@ import sys
 
 
 def eating_cookies(n, cache=None):
+    # if 1 or 0 zero cookies left, stop eating
     if n <= 1:
         return 1
+    # if only 2 cookies left, stop eating
     if n <= 2:
         return 2
+    # if more than 2 cookies left, keep on eating
+    # eat either 3, 2, or 1 cookies
     return eating_cookies(n-3) + eating_cookies(n - 2) + eating_cookies(n - 1)
 
 
