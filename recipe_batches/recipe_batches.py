@@ -16,19 +16,27 @@ import math
 
 def recipe_batches(recipe, ingredients):
     batch_count = []
+
+    if len(recipe) != len(ingredients):
+        return 0
+
     for i in recipe:
         for j in ingredients:
             if i == j:
                 batch_count.append(ingredients[j]/recipe[i])
+            elif not i or not j:
+                batch_count.append(0)
 
     if min(batch_count) >= 1:
         return int(min(batch_count))
+    else:
+        return 0
 
 
 if __name__ == '__main__':
     # Change the entries of these dictionaries to test
     # your implementation with different inputs
-    recipe = {'milk': 100, 'butter': 50, 'flour': 5}
-    ingredients = {'milk': 332, 'butter': 188, 'flour': 51}
+    recipe = {'milk': 2, 'butter': 40, 'flour': 20}
+    ingredients = {'milk': 5, 'butter': 120, 'flour': 500}
     print("{batches} batches can be made from the available ingredients: {ingredients}.".format(
         batches=recipe_batches(recipe, ingredients), ingredients=ingredients))
