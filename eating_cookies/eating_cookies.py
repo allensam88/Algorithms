@@ -2,7 +2,34 @@
 # STEP 1: UNDERSTAND
 # Fibonacci Sequence for 5
 # 0, 1, 1, 2, 3, 5
-# equals 13 if you count 0 as 1
+# equals 12
+
+# What is actually happening? I think this tree...
+#
+# 								----START HERE----
+# 									enter n = 5
+#										|
+# 								 n is not 1 or 2
+#		________________________________|________________________________________________
+#		|								|												|
+# 	invoke(2)						invoke(3)										invoke(4)
+# 		|								|												|
+#   returns 2		 			 n is not 1 or 2					 			n is not 1 or 2
+#  (base stop)							|												|
+#						________________|________________				________________|________________
+#						|				|				|				|				|				|
+#					invoke(0)		invoke(1)		invoke(2)		invoke(1)		invoke(2)		invoke(3)
+#						|				|				|				|				|				|
+#					returns 1		returns 1		returns 2		returns 1		returns 2  	 n is not 1 or 2
+#				   (base stop) 	   (base stop) 	   (base stop) 	   (base stop) 	   (base stop)			|
+#																										|
+#																										|
+#																						________________|________________
+#																						|				|				|
+#																					invoke(0)		invoke(1)		invoke(2)
+#								 -----RESULT-----										|				|				|
+#					   Add up all the base returns of 1 or 2						returns 1		returns 1		returns 2
+#								  Total Sum = 13.							   	   (base stop)	   (base stop) 	   (base stop)
 
 import sys
 
